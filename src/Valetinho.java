@@ -6,7 +6,7 @@ public class Valetinho {
         estacionamentoAtual = new Estacionamento(quant);
     }
     public void Entrada(int vagaEscolhida, String placaVeiculo) throws Exception{
-        estacionamentoAtual.entrar(vagaEscolhida, placaVeiculo);
+        estacionamentoAtual.entrar(placaVeiculo, vagaEscolhida);
     }
     public void Saida(int vagaEscolhida) throws Exception{
         estacionamentoAtual.sair(vagaEscolhida);
@@ -18,8 +18,8 @@ public class Valetinho {
         }
         throw new Exception("Inexistente");
     }
-    public void transfereVaga(String placaEscolhida, int vagaDestino) throws Exception{
-        estacionamentoAtual.transferirVaga(placaEscolhida, vagaDestino);
+    public void transfereVaga(int placaEscolhida, int vagaDestino) throws Exception{
+        estacionamentoAtual.transferir(placaEscolhida, vagaDestino);
     }
     public String[] listagemGeral(){
         return estacionamentoAtual.listarGeral();

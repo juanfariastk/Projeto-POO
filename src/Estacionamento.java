@@ -17,11 +17,11 @@ public class Estacionamento {
 
     }
 
-    public void entrar(int vagaEscolhida, String placaNova) throws Exception {
+    public void entrar( String placaNova, int vagaEscolhida) throws Exception {
         if (vagaEscolhida < 1) {
             throw new Exception("Digite o número de uma vaga maior que 0!");
         } else if (vagaEscolhida > placas.length) {
-            throw new Exception("Digite o número de uma vaga menorr que " + placas.length);
+            throw new Exception("Digite o número de uma vaga menor que " + placas.length);
         } else {
             if (placas[vagaEscolhida - 1] == null) {
                 FileWriter arquivoHistorico = new FileWriter("historico.csv", true);
@@ -43,9 +43,9 @@ public class Estacionamento {
         if (vagaEscolhida < 1) {
             throw new Exception("Digite o número de uma vaga maior que 0!");
         } else if (vagaEscolhida > placas.length) {
-            throw new Exception("Digite o número de uma vaga menorr que " + placas.length);
+            throw new Exception("Digite o número de uma vaga menor que " + placas.length);
         } else if (placas[vagaEscolhida - 1] == null) {
-            throw new Exception("Não é possivel realziar a saída, pois já está desocupada esta vaga");
+            throw new Exception("Não é possivel realizar a saída, pois já está desocupada esta vaga");
         } else {
             FileWriter arquivoHistorico = new FileWriter("historico.csv", true);
             BufferedWriter escreverHistorico = new BufferedWriter(arquivoHistorico);
@@ -56,43 +56,40 @@ public class Estacionamento {
         }
     }
 
-    public int consultarPlaca(String placaEscolhida) {
+    public int consultarPlaca(String placaEscolhida) throws Exception{
         for (int i = 0; i < placas.length; i++) {
             if (placaEscolhida.equals(placas[i])) {
                 return i + 1;
             }
-            ;
-        }
-        return -1;
-    }
-
-    public void transferirVaga(String placaEscolhida, int vagaEscolhida) throws Exception {
-        if (vagaEscolhida < 1) {
-            throw new Exception("Digite o número de uma vaga maior que 0!");
-        } else if (vagaEscolhida > placas.length) {
-            throw new Exception("Digite o número de uma vaga menorr que " + placas.length);
-        } else if (placas[vagaEscolhida - 1] != null) {
-            throw new Exception("Esta vaga já está ocupada");
-        } else {
-            for (int i = 0; i < placas.length; i++) {
-                if (placaEscolhida.equals(placas[i])) {
-                    placas[vagaEscolhida - 1] = placas[i];
-                    placas[i] = null;
-                    break;
-                } else {
-                    new Exception("Esta placa não existe nas vagas atuais");
-                }
+            if(i>=placas.length){
+                return -1;
             }
         }
+        throw new Exception("Esta placa não se encontra!");
+    }
+
+    public void transferir(int vagaAtual, int vagaEscolhida) throws Exception {
+        if (vagaEscolhida < 1 || vagaAtual < 1) {
+            throw new Exception("Digite o número de uma vaga maior que 0!");
+        } else if (vagaEscolhida > placas.length) {
+            throw new Exception("Digite o número de uma vaga menor que " + placas.length);
+        } else if (placas[vagaEscolhida - 1] != null) {
+            throw new Exception("Esta vaga já está ocupada");
+        }else if(placas[vagaAtual-1] == null ){
+            throw new Exception("A vaga escolhida está vazia!");
+        } else {
+             placas[vagaEscolhida-1]=placas[vagaAtual-1];
+             placas[vagaAtual-1]=null;
+            }
     }
 
     public String[] listarGeral() {
-        String[] lista = new String[10];
+        String[] lista = new String[placas.length];
         for (int i = 0; i < placas.length; i++) {
             if (placas[i] == null) {
-                lista[i] = "livre";
+                lista[i] = "livre" + " ";
             } else {
-                lista[i] = placas[i];
+                lista[i] = placas[i] + " ";
             }
         }
         return lista;
@@ -115,7 +112,7 @@ public class Estacionamento {
         BufferedWriter escreverPlacas = new BufferedWriter(arquivoPlacas);
         for (int i = 0; i < placas.length; i++) {
             if (placas[i] != null) {
-                escreverPlacas.write("vaga :" + i + " | Placa: "+ placas[i] + "\n");
+                escreverPlacas.write("vaga :" + (i+1) + " | Placa: "+ placas[i] + "\n");
             }
         }
         escreverPlacas.close();
