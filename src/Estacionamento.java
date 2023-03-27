@@ -61,11 +61,8 @@ public class Estacionamento {
             if (placaEscolhida.equals(placas[i])) {
                 return i + 1;
             }
-            if(i>=placas.length){
-                return -1;
-            }
         }
-        throw new Exception("Esta placa não se encontra!");
+        return -1;
     }
 
     public void transferir(int vagaAtual, int vagaEscolhida) throws Exception {

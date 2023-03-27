@@ -6,10 +6,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        Estacionamento estacionamento = new Estacionamento(10);	//10 vagas
+    public static void main(String[] args) throws Exception{
+        Estacionamento estacionamento = null;
 
         try {
+            estacionamento = new Estacionamento(0);	//10 vagas
             estacionamento.lerDados();
         }
         catch(Exception e) {
@@ -97,9 +98,11 @@ public class Main {
         }while(op != 0);
 
         teclado.close();
+
         try {
             estacionamento.gravarDados();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println(e.getMessage());;
         }
 
