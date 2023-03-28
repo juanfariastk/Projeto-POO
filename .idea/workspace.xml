@@ -7,9 +7,8 @@
     <list default="true" id="5562db3a-7e3e-4831-b773-7bdded37b18f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/historico.csv" beforeDir="false" afterPath="$PROJECT_DIR$/historico.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/placas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/placas.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Estacionamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estacionamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Valetinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Valetinho.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ValetinhoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ValetinhoUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,11 +83,23 @@
       <updated>1679571124056</updated>
       <workItem from="1679571125440" duration="7633000" />
       <workItem from="1679654541263" duration="7387000" />
-      <workItem from="1679913434200" duration="8240000" />
+      <workItem from="1679913434200" duration="10279000" />
+      <workItem from="1680000235552" duration="9214000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

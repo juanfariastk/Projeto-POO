@@ -11,7 +11,7 @@ public class Estacionamento {
     private String[] placas;
     public Estacionamento(int quantidade) throws Exception {
         if (quantidade <= 0) {
-            throw new Exception("A quantidade de vagas deve ser maior que 0");
+            throw new EstacionamentoException("A quantidade de vagas deve ser maior que 0");
         }
         placas = new String[quantidade];
 
@@ -19,9 +19,9 @@ public class Estacionamento {
 
     public void entrar( String placaNova, int vagaEscolhida) throws Exception {
         if (vagaEscolhida < 1) {
-            throw new Exception("Digite o número de uma vaga maior que 0!");
+            throw new EstacionamentoException("Digite o número de uma vaga maior que 0!");
         } else if (vagaEscolhida > placas.length) {
-            throw new Exception("Digite o número de uma vaga menor que " + placas.length);
+            throw new EstacionamentoException("Digite o número de uma vaga menor que " + placas.length);
         } else {
             if (placas[vagaEscolhida - 1] == null) {
                 FileWriter arquivoHistorico = new FileWriter("historico.csv", true);
@@ -33,7 +33,7 @@ public class Estacionamento {
                 escreverHistorico.close();
                 // falta colocar a data de entrada;
             } else {
-                throw new Exception("Esta vaga já está ocupada!");
+                throw new EstacionamentoException("Esta vaga já está ocupada!");
             }
         }
 
@@ -41,11 +41,11 @@ public class Estacionamento {
 
     public void sair(int vagaEscolhida) throws Exception {
         if (vagaEscolhida < 1) {
-            throw new Exception("Digite o número de uma vaga maior que 0!");
+            throw new EstacionamentoException("Digite o número de uma vaga maior que 0!");
         } else if (vagaEscolhida > placas.length) {
-            throw new Exception("Digite o número de uma vaga menor que " + placas.length);
+            throw new EstacionamentoException("Digite o número de uma vaga menor que " + placas.length);
         } else if (placas[vagaEscolhida - 1] == null) {
-            throw new Exception("Não é possivel realizar a saída, pois já está desocupada esta vaga");
+            throw new EstacionamentoException("Não é possivel realizar a saída, pois já está desocupada esta vaga");
         } else {
             FileWriter arquivoHistorico = new FileWriter("historico.csv", true);
             BufferedWriter escreverHistorico = new BufferedWriter(arquivoHistorico);
@@ -67,13 +67,13 @@ public class Estacionamento {
 
     public void transferir(int vagaAtual, int vagaEscolhida) throws Exception {
         if (vagaEscolhida < 1 || vagaAtual < 1) {
-            throw new Exception("Digite o número de uma vaga maior que 0!");
+            throw new EstacionamentoException("Digite o número de uma vaga maior que 0!");
         } else if (vagaEscolhida > placas.length) {
-            throw new Exception("Digite o número de uma vaga menor que " + placas.length);
+            throw new EstacionamentoException("Digite o número de uma vaga menor que " + placas.length);
         } else if (placas[vagaEscolhida - 1] != null) {
-            throw new Exception("Esta vaga já está ocupada");
+            throw new EstacionamentoException("Esta vaga já está ocupada");
         }else if(placas[vagaAtual-1] == null ){
-            throw new Exception("A vaga escolhida está vazia!");
+            throw new EstacionamentoException("A vaga escolhida está vazia!");
         } else {
              placas[vagaEscolhida-1]=placas[vagaAtual-1];
              placas[vagaAtual-1]=null;

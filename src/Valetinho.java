@@ -16,7 +16,7 @@ public class Valetinho {
         if(posVaga>0) {
             return posVaga;
         }
-        throw new Exception("Inexistente");
+        throw new EstacionamentoException("Inexistente");
     }
     public void transfereVaga(int placaEscolhida, int vagaDestino) throws Exception{
         estacionamentoAtual.transferir(placaEscolhida, vagaDestino);

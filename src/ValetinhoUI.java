@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class ValetinhoUI {
@@ -9,17 +10,25 @@ public class ValetinhoUI {
     private JLabel label_3;
     private JLabel label_4;
     private JLabel label_5;
+    private JLabel label_6;
     private JTextField textField;
     private JTextField textField_1;
     private JTextField textField_2;
     private JTextField textField_3;
     private JTextField textField_4;
     private  JTextField textField_5;
+    private JTextField textField_6;
+    private JTextField textField_7;
     private JButton button_1;
     private JButton button_2;
     private JButton button_3;
     private JButton button_4;
+    private JButton button_5;
+    private JButton button_6;
+    private JButton button_7;
     private Valetinho valetinho;
+
+
 
     public static void main(String[] args){
         EventQueue.invokeLater(new Runnable() {
@@ -65,10 +74,13 @@ public class ValetinhoUI {
                     button_2.setEnabled(true);
                     button_3.setEnabled(true);
                     button_4.setEnabled(true);
-                }catch(NumberFormatException nfe){
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    button_5.setEnabled(true);
+                    button_6.setEnabled(true);
+                    button_7.setEnabled(true);
+                }catch(EstacionamentoException e1){
+                    JOptionPane.showMessageDialog(null, e1, "Erro", JOptionPane.ERROR_MESSAGE);
                 }
-                catch (Exception ex2){
+                catch (Exception e2){
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -91,8 +103,10 @@ public class ValetinhoUI {
                 try{
                     valetinho.Entrada(Integer.parseInt(ValetinhoUI.this.textField_2.getText()) ,ValetinhoUI.this.textField_1.getText());
                     JOptionPane.showMessageDialog(null, "Placa adicionada com sucesso" ,"Adicionada!", JOptionPane.INFORMATION_MESSAGE );
-                }catch(Exception e1){
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }catch(EstacionamentoException e1){
+                    JOptionPane.showMessageDialog(null, e1, "Erro", JOptionPane.ERROR_MESSAGE);
+                }catch(Exception e2){
+                    JOptionPane.showMessageDialog(null, e2, "Erro", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
@@ -116,14 +130,16 @@ public class ValetinhoUI {
                         valetinho.Saida(Integer.parseInt(ValetinhoUI.this.textField_3.getText()));
                         JOptionPane.showMessageDialog(null, "Removido com Sucesso!", "Removida!", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }catch (Exception e1){
+                }catch (EstacionamentoException e1){
+                    JOptionPane.showMessageDialog(null, e1, "erro", JOptionPane.ERROR_MESSAGE);
+                }catch(Exception e2){
                     JOptionPane.showMessageDialog(null, "Erro", "erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         this.button_3.setBounds(13,168,96,23);
         this.frame.getContentPane().add(this.button_3);
-
+        //
         this.label_5 = new JLabel("Digite uma placa para consultar: ");
         this.label_5.setBounds(13,197, 200, 14);
         this.frame.getContentPane().add(this.label_5);
@@ -145,12 +161,143 @@ public class ValetinhoUI {
                     if(vagaPlaca > 0){
                         ValetinhoUI.this.textField_5.setText("Vaga: "+vagaPlaca);
                     }
-                } catch (Exception e1){
+                } catch (EstacionamentoException e1){
                     ValetinhoUI.this.textField_5.setText("Inexistente");
+                } catch(Exception e2){
+                    JOptionPane.showMessageDialog(null, "Erro", "erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         this.button_4.setBounds(13, 215, 96,23);
         this.frame.getContentPane().add(button_4);
+        this.label_6 = new JLabel("Transferência de placa :");
+        this.textField_6 = new JTextField();
+        this.textField_7 = new JTextField();
+        this.label_6.setBounds(13, 245, 150, 14);
+        this.textField_6.setBounds(155, 242, 30,23);
+        this.textField_7.setBounds(190, 242, 30, 23);
+        this.frame.getContentPane().add(label_6);
+        this.frame.getContentPane().add(textField_6);
+        this.frame.getContentPane().add(textField_7);
+        this.button_5 = new JButton("Transferir");
+        this.button_5.setEnabled(false);
+        this.button_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    valetinho.transfereVaga(Integer.parseInt(ValetinhoUI.this.textField_6.getText()), Integer.parseInt(ValetinhoUI.this.textField_7.getText()));
+                    JOptionPane.showMessageDialog(null, "Transferido com sucesso!", "Transferido!", JOptionPane.INFORMATION_MESSAGE);
+                }catch(EstacionamentoException  e1){
+                    JOptionPane.showMessageDialog(null, e1, "erro", JOptionPane.ERROR_MESSAGE);
+                }catch (Exception e2){
+                    JOptionPane.showMessageDialog(null, "Erro", "erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        this.button_5.setBounds(13, 262, 96, 23);
+        this.frame.getContentPane().add(button_5);
+        //
+        this.button_6 = new JButton("Listar Geral");
+        this.button_6.setEnabled(false);
+        this.button_6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    JFrame frame = new JFrame();
+                    frame.setSize(300, 300);
+                    frame.setResizable(false);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setTitle("Nova Janela");
+
+                    JPanel panel = new JPanel();
+                    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 85, 10, 85));
+
+                    JTextArea areaDeTexto = new JTextArea();
+                    areaDeTexto.setEnabled(false);
+                    areaDeTexto.setDisabledTextColor(Color.BLACK);
+                    areaDeTexto.setBackground(null);
+                    areaDeTexto.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                    areaDeTexto.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    areaDeTexto.setAlignmentY(Component.CENTER_ALIGNMENT);
+                    areaDeTexto.setPreferredSize(new Dimension(150, 200));
+
+                    JLabel label = new JLabel("Listagem: ");
+                    label.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    label.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+                    String[] dadosListagem = valetinho.listagemGeral();
+
+                    String texto ="";
+                    for(String s: dadosListagem ){
+                        texto+= s  + "\n";
+                    }
+                    areaDeTexto.setText(texto);
+
+                    panel.add(label);
+                    panel.add(areaDeTexto);
+
+                    frame.add(panel);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                }catch(Exception e1){
+                    JOptionPane.showMessageDialog(null, e1, "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        });
+        this.button_6.setBounds(13,292, 125,23);
+        this.frame.getContentPane().add(button_6);
+        //
+        this.button_7 = new JButton("Listar Livres");
+        this.button_7.setEnabled(false);
+        this.button_7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    JFrame frame = new JFrame();
+                    frame.setSize(300, 300);
+                    frame.setResizable(false);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setTitle("Nova Janela");
+
+                    JPanel panel = new JPanel();
+                    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 85, 10, 85));
+
+                    JTextArea areaDeTexto = new JTextArea();
+                    areaDeTexto.setEnabled(false);
+                    areaDeTexto.setDisabledTextColor(Color.BLACK);
+                    areaDeTexto.setBackground(null);
+                    areaDeTexto.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                    areaDeTexto.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    areaDeTexto.setAlignmentY(Component.CENTER_ALIGNMENT);
+                    areaDeTexto.setPreferredSize(new Dimension(150, 200));
+
+                    JLabel label = new JLabel("Listagem: ");
+                    label.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    label.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+                    ArrayList<Integer> dadosListagem = valetinho.listagemLivres();
+
+                    String texto ="";
+                    for(Integer i: dadosListagem ){
+                        texto += i  + "\n";
+                    }
+                    areaDeTexto.setText(texto);
+
+                    panel.add(label);
+                    panel.add(areaDeTexto);
+
+                    frame.add(panel);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                }catch(Exception e1){
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        this.button_7.setBounds(13,320, 125,23);
+        this.frame.getContentPane().add(button_7);
     }
 }
