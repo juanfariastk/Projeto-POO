@@ -6,17 +6,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Janela_2 extends JFrame {
-    private JButton button_1;
-    private JFrame frame;
-    private JTextField textField;
-    private JLabel label_1;
-    private JLabel label_2;
-    private JTextField textField_1;
 
     public Janela_2(Valetinho valetinhoMain) {
         super("Adicionar placa ao Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
+        setResizable(false);
+        
         
         JPanel content = new JPanel();
         content.setBackground(Color.WHITE);
@@ -35,9 +31,19 @@ public class Janela_2 extends JFrame {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 30, 30));
         content.add(buttonPanel);
         buttonPanel.setLayout(null);
+        
+        JTextField textField = new JTextField();
+        textField.setBounds(264, 25, 27, 20);
+        buttonPanel.add(textField);
+        textField.setColumns(10);
+        
+        JTextField textField_1 = new JTextField();
+        textField_1.setBounds(264, 50, 86, 20);
+        buttonPanel.add(textField_1);
+        textField_1.setColumns(10);
 
-        this.button_1 = new JButton("Adicionar");
-        this.button_1.addActionListener(new ActionListener() {
+        JButton button_1 = new JButton("Adicionar");
+        button_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
@@ -52,39 +58,27 @@ public class Janela_2 extends JFrame {
                 }
             }
         });
-        //
-        this.button_1.setBounds(10, 100, 564, 66);
-        this.button_1.setPreferredSize(new Dimension(180, 40));
-        this.button_1.setFocusPainted(false);
-        this.button_1.setBackground(Color.GREEN.darker());
-        this.button_1.setForeground(Color.WHITE);
-        this.button_1.setBorder(BorderFactory.createEmptyBorder());
-        this.button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        buttonPanel.add(this.button_1);
         
-        textField = new JTextField();
-        textField.setBounds(264, 25, 27, 20);
-        buttonPanel.add(textField);
-        textField.setColumns(10);
+        button_1.setBounds(10, 100, 564, 66);
+        button_1.setPreferredSize(new Dimension(180, 40));
+        button_1.setFocusPainted(false);
+        button_1.setBackground(Color.GREEN.darker());
+        button_1.setForeground(Color.WHITE);
+        button_1.setBorder(BorderFactory.createEmptyBorder());
+        button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buttonPanel.add(button_1);
         
-        label_1 = new JLabel("Vaga:");
+        JLabel label_1 = new JLabel("Vaga:");
         label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
         label_1.setBounds(210, 28, 56, 14);
         buttonPanel.add(label_1);
         
-        label_2 = new JLabel("Placa:");
+        JLabel label_2 = new JLabel("Placa:");
         label_2.setFont(new Font("Tahoma", Font.BOLD, 11));
         label_2.setBounds(210, 53, 46, 14);
         buttonPanel.add(label_2);
-        
-        textField_1 = new JTextField();
-        textField_1.setBounds(264, 50, 86, 20);
-        buttonPanel.add(textField_1);
-        textField_1.setColumns(10);
-        
 
         setVisible(true);
-        
         
     }
 

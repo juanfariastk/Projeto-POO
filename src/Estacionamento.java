@@ -21,7 +21,7 @@ public class Estacionamento {
         if (vagaEscolhida < 1) {
             throw new EstacionamentoException("Digite o número de uma vaga maior que 0!");
         } else if (vagaEscolhida > placas.length) {
-            throw new EstacionamentoException("Digite o número de uma vaga menor que " + placas.length);
+            throw new EstacionamentoException("Digite o número de uma vaga menor ou igual que " + placas.length);
         } else {
             if (placas[vagaEscolhida - 1] == null) {
                 FileWriter arquivoHistorico = new FileWriter("historico.csv", true);
@@ -84,7 +84,7 @@ public class Estacionamento {
         String[] lista = new String[placas.length];
         for (int i = 0; i < placas.length; i++) {
             if (placas[i] == null) {
-                lista[i] = "livre" + " ";
+                lista[i] = "Livre" + " ";
             } else {
                 lista[i] = placas[i] + " ";
             }

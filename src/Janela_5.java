@@ -7,16 +7,16 @@ import java.awt.event.MouseEvent;
 
 public class Janela_5 extends JFrame {
     private JButton button_1;
-    private JFrame frame;
     private JLabel label_2;
     private JTextField textField_1;
     private JLabel label_1;
     private JTextField textField;
 
-    public Janela_5() {
+    public Janela_5(Valetinho valetinhoMain) {
         super("Transferir Placa do Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
+        setResizable(false);
 
         JPanel content = new JPanel();
         content.setBackground(Color.WHITE);
@@ -37,6 +37,23 @@ public class Janela_5 extends JFrame {
         buttonPanel.setLayout(null);
 
         this.button_1 = new JButton("Transferir");
+        this.button_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    valetinhoMain.transfereVaga(Integer.parseInt(textField_1.getText()), Integer.parseInt(textField.getText()));
+                    JOptionPane.showMessageDialog(null, "Transferido com sucesso!", "Transferido!", JOptionPane.INFORMATION_MESSAGE);
+                }catch(EstacionamentoException  e1){
+                    JOptionPane.showMessageDialog(null, e1, "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+                catch (NumberFormatException e2) {
+                    JOptionPane.showMessageDialog(null,"Tipo de parâmetro incorreto! Digite um número de vaga válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }catch (Exception e3){
+                    JOptionPane.showMessageDialog(null, "Erro", "erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
         this.button_1.setBounds(10, 97, 564, 66);
         this.button_1.setPreferredSize(new Dimension(180, 40));
         this.button_1.setFocusPainted(false);
@@ -46,14 +63,14 @@ public class Janela_5 extends JFrame {
         this.button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         buttonPanel.add(this.button_1);
         
-        label_1 = new JLabel("Placa 2:");
+        label_1 = new JLabel("Vaga Destino:");
         label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-        label_1.setBounds(197, 54, 46, 14);
+        label_1.setBounds(147, 54, 86, 14);
         buttonPanel.add(label_1);
         
-        label_2 = new JLabel("Placa:");
+        label_2 = new JLabel("Vaga Origem:");
         label_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-        label_2.setBounds(197, 29, 46, 14);
+        label_2.setBounds(157, 29, 76, 14);
         buttonPanel.add(label_2);
         
         textField_1 = new JTextField();
@@ -73,7 +90,7 @@ public class Janela_5 extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Janela_1();
+        new Janela_5(null);
     }
 }
 

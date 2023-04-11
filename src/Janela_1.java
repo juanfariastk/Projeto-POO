@@ -7,15 +7,12 @@ import java.awt.event.MouseEvent;
 
 
 public class Janela_1 extends JFrame {
-    private JButton button_1;
-    private JFrame frame;
-    private JTextField textField;
-    private JLabel label_1;
 
     public Janela_1(ValetinhoUIII valetinhoUIII) {
         super("Vagas do Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
+        setResizable(false);
        
 
         JPanel content = new JPanel();
@@ -35,13 +32,18 @@ public class Janela_1 extends JFrame {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 30, 30));
         content.add(buttonPanel);
         buttonPanel.setLayout(null);
+        
+        JTextField textField = new JTextField();
+        textField.setBounds(276, 25, 74, 20);
+        buttonPanel.add(textField);
+        textField.setColumns(10);
 
-        this.button_1 = new JButton("Definir número de vagas");
-        this.button_1.addActionListener(new ActionListener() {
+        JButton button_1 = new JButton("Definir número de vagas");
+        button_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    Valetinho valetinho = new Valetinho(Integer.parseInt(Janela_1.this.textField.getText()));
+                    Valetinho valetinho = new Valetinho(Integer.parseInt(textField.getText()));
                     valetinhoUIII.setValetinho(valetinho);
                     JOptionPane.showMessageDialog(null, "Valetinho Criado!" ,"Sucesso!", JOptionPane.INFORMATION_MESSAGE );
                     button_1.setEnabled(false);
@@ -54,29 +56,22 @@ public class Janela_1 extends JFrame {
                 }
             }
         });
-        //
-        this.button_1.setBounds(10, 69, 564, 66);
-        this.button_1.setPreferredSize(new Dimension(180, 40));
-        this.button_1.setFocusPainted(false);
-        this.button_1.setBackground(Color.GREEN.darker());
-        this.button_1.setForeground(Color.WHITE);
-        this.button_1.setBorder(BorderFactory.createEmptyBorder());
-        this.button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        buttonPanel.add(this.button_1);
+
+        button_1.setBounds(10, 69, 564, 66);
+        button_1.setPreferredSize(new Dimension(180, 40));
+        button_1.setFocusPainted(false);
+        button_1.setBackground(Color.GREEN.darker());
+        button_1.setForeground(Color.WHITE);
+        button_1.setBorder(BorderFactory.createEmptyBorder());
+        button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buttonPanel.add(button_1);
         
-        textField = new JTextField();
-        textField.setBounds(276, 25, 74, 20);
-        buttonPanel.add(textField);
-        textField.setColumns(10);
-        
-        label_1 = new JLabel("Quantas vagas você deseja?");
+        JLabel label_1 = new JLabel("Quantas vagas você deseja?");
         label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
         label_1.setBounds(98, 28, 168, 14);
         buttonPanel.add(label_1);
         
-
-        setVisible(true);
-        
+        setVisible(true);  
         
     }
 

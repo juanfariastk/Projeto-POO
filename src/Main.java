@@ -6,104 +6,56 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         Estacionamento estacionamento = null;
 
         try {
-            estacionamento = new Estacionamento(0);	//10 vagas
-            estacionamento.lerDados();
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
+            estacionamento = new Estacionamento(10);	//10 vagas
+            new Estacionamento(0);	//0 vagas
+            System.out.println("*************0--->Nao lançou exceção para: construtor");
+        }catch (Exception e) {System.out.println("exceção0--->"+e.getMessage());}
 
-
-        String placa;
-        int vaga;
-        int op=0;
-        Scanner teclado = new Scanner(System.in);
-
-        do{
-            try {
-                System.out.println("\n---------------------------------------------------");
-                System.out.println("VALETINHO DO IFPB  - " + LocalDateTime.now() );
-                System.out.println("---------------------------------------------------");
-                System.out.println("Menu:");
-                System.out.println("0 - terminar programa");
-                System.out.println("1 - entrar carro");
-                System.out.println("2 - sair carro");
-                System.out.println("3 - consultar placa");
-                System.out.println("3 - transferir placa");
-                System.out.println("4 - listar geral");
-                System.out.println("5 - listar vagas livres");
-                System.out.print("==>");
-                op = Integer.parseInt(teclado.nextLine());
-
-                switch(op) {
-                    case 0 :
-                        System.out.println("Volte sempre!!!");
-                        break;
-                    case 1 :
-                        System.out.print("Qual a placa para entrar? ");
-                        placa = teclado.nextLine();
-                        System.out.print("Qual a vaga para entrar? ");
-                        vaga = Integer.parseInt(teclado.nextLine());
-                        estacionamento.entrar(placa, vaga);
-                        System.out.println("entrou");
-                        break;
-                    case 2 :
-                        System.out.print("Qual a vaga para sair? ");
-                        vaga = Integer.parseInt(teclado.nextLine());
-                        estacionamento.sair(vaga);
-                        System.out.println("saiu");
-                        break;
-                    case 3 :
-                        System.out.print("Qual a placa para consultar? ");
-                        placa = teclado.nextLine();
-                        vaga = estacionamento.consultarPlaca(placa);
-                        System.out.println("vaga="+vaga);
-                        break;
-                    case 4 :
-                        System.out.print("Qual a vaga origem? ");
-                        vaga = Integer.parseInt(teclado.nextLine());
-                        System.out.print("Qual a vaga destino? ");
-                        int vagadestino = Integer.parseInt(teclado.nextLine());
-                        estacionamento.transferir(vaga, vagadestino);
-                        System.out.println("transferiu");
-                        break;
-                    case 5 :
-                        System.out.println("listar vagas geral");
-                        for(String s : estacionamento.listarGeral()) {
-                            System.out.println(s);
-                        }
-                        break;
-                    case 6 :
-                        System.out.println("listar vagas livres");
-                        for(int i : estacionamento.listarLivres()) {
-                            System.out.println(i);
-                        }
-                        break;
-                    default:
-                        System.out.println("Opção Invalida!");;
-                }
-
-            }//try
-            catch(NumberFormatException e) {
-                System.out.println("Numero invalido");
-            }
-            catch(Exception e) {
-                System.out.println(e.getMessage());
-            }
-
-        }while(op != 0);
-
-        teclado.close();
+        System.out.println("\n-------TESTE EXCEÇÕES LANÇADAS--------");
+        try {
+            estacionamento.entrar("AAA1111",1);
+            estacionamento.entrar("XXX1111",1);
+            System.out.println("*************1--->Nao lançou exceção para: entrar - 1");
+        }catch (Exception e) {System.out.println("exceção1--->"+e.getMessage());}
 
         try {
-            estacionamento.gravarDados();
+            estacionamento.sair(2);
+            System.out.println("*************2--->Nao lançou exceção para: sair - 2");
+        }catch (Exception e) {System.out.println("exceção2--->"+e.getMessage());}
+
+
+
+        int vaga = estacionamento.consultarPlaca("XXX0000");
+        System.out.println("placa XXX0000 nao encontrada, vaga= "+vaga);
+
+
+        try {
+            estacionamento.transferir(1,1);
+            System.out.println("*************3--->Nao lançou exceção para: transferir - 1");
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());;
+        catch (Exception e) {System.out.println("exceção3--->"+e.getMessage());}
+
+        try {
+            estacionamento.transferir(2,1);
+            System.out.println("*************4--->Nao lançou exceção para: transferir - 2");
+        }
+        catch (Exception e) {System.out.println("exceção4--->"+e.getMessage());}
+
+        try {
+            estacionamento.transferir(3,2);
+            System.out.println("*************5--->Nao lançou exceção para: transferir - 3 ");
+        }
+        catch (Exception e) {System.out.println("exceção5--->"+e.getMessage());}
+
+        System.out.println("\n------------------------");
+        System.out.println("listagem geral");
+        System.out.println("------------------------");
+        for(String s : estacionamento.listarGeral()) {
+            System.out.println(s);
         }
 
     }

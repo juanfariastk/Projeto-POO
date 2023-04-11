@@ -37,6 +37,7 @@ public class ValetinhoUI {
                 try{
                     ValetinhoUI window = new ValetinhoUI();
                     window.frame.setVisible(true);
+
                 }catch(Exception ex2){
                     ex2.printStackTrace();
                 }
