@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class Janela_3 extends JFrame {
 
-    public Janela_3(Valetinho valetinhoMain) {
+    public Janela_3(Estacionamento valetinhoMain) {
         super("Remover placa ao Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -42,7 +42,7 @@ public class Janela_3 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    valetinhoMain.Saida(Integer.parseInt(textField.getText()));
+                    valetinhoMain.sair(Integer.parseInt(textField.getText()));
                     JOptionPane.showMessageDialog(null, "Vaga Liberada!" ,"Sucesso!", JOptionPane.INFORMATION_MESSAGE );
 
                 }catch(EstacionamentoException e1){

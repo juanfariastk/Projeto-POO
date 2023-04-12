@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class Janela_4 extends JFrame {
 
-    public Janela_4(Valetinho valetinhoMain) {
+    public Janela_4(Estacionamento valetinhoMain) {
         super("Consultar Placa do Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -41,23 +41,21 @@ public class Janela_4 extends JFrame {
         textField_2.setBounds(258, 56, 86, 20);
         buttonPanel.add(textField_2);
         textField_2.setColumns(10);
-        textField_2.setVisible(false);
+        //textField_2.setVisible(false);
 
         JButton button_1 = new JButton("Consultar");
         button_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    int vagaPlaca = valetinhoMain.consultaPlaca(textField_1.getText());
+                    int vagaPlaca = valetinhoMain.consultarPlaca(textField_1.getText());
                     if(vagaPlaca > 0){
-                    	textField_2.setVisible(true);
                         textField_2.setText("Vaga: "+vagaPlaca);
+                    }else {
+                        textField_2.setText("Inexistente");
                     }
-                } catch (EstacionamentoException e1){
-                	textField_2.setVisible(true);
-                    textField_2.setText("Inexistente");
-                } catch(Exception e2){
-                    JOptionPane.showMessageDialog(null, "Erro", "erro", JOptionPane.ERROR_MESSAGE);
+                }catch(Exception e2){
+                    JOptionPane.showMessageDialog(null, "Campos em Branco!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

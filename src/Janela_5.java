@@ -12,7 +12,7 @@ public class Janela_5 extends JFrame {
     private JLabel label_1;
     private JTextField textField;
 
-    public Janela_5(Valetinho valetinhoMain) {
+    public Janela_5(Estacionamento valetinhoMain) {
         super("Transferir Placa do Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -41,7 +41,7 @@ public class Janela_5 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    valetinhoMain.transfereVaga(Integer.parseInt(textField_1.getText()), Integer.parseInt(textField.getText()));
+                    valetinhoMain.transferir(Integer.parseInt(textField_1.getText()), Integer.parseInt(textField.getText()));
                     JOptionPane.showMessageDialog(null, "Transferido com sucesso!", "Transferido!", JOptionPane.INFORMATION_MESSAGE);
                 }catch(EstacionamentoException  e1){
                     JOptionPane.showMessageDialog(null, e1, "Erro", JOptionPane.ERROR_MESSAGE);

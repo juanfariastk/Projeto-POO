@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class Janela_2 extends JFrame {
 
-    public Janela_2(Valetinho valetinhoMain) {
+    public Janela_2(Estacionamento valetinhoMain) {
         super("Adicionar placa ao Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -47,14 +47,14 @@ public class Janela_2 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    valetinhoMain.Entrada(Integer.parseInt(textField.getText()) ,textField_1.getText());
+                    valetinhoMain.entrar(textField_1.getText(), Integer.parseInt(textField.getText()) );
                     JOptionPane.showMessageDialog(null, "Placa Adicionada!" ,"Sucesso!", JOptionPane.INFORMATION_MESSAGE );
 
                 }catch(EstacionamentoException e1){
                     JOptionPane.showMessageDialog(null, e1, "Erro", JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e2){
-                    JOptionPane.showMessageDialog(null, "Ocorreu um erro!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, e2, "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

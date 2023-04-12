@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Estacionamento {
     private String[] placas;
-    public Estacionamento(int quantidade) throws Exception {
+    public  Estacionamento(int quantidade) throws Exception {
         if (quantidade <= 0) {
             throw new EstacionamentoException("A quantidade de vagas deve ser maior que 0");
         }
@@ -31,7 +31,6 @@ public class Estacionamento {
                 escreverHistorico.write("Carro: " + placaNova + " | " + "Vaga: " + vagaEscolhida + " | " + "Entrou em: "
                         + LocalDateTime.now() + "\n");
                 escreverHistorico.close();
-                // falta colocar a data de entrada;
             } else {
                 throw new EstacionamentoException("Esta vaga já está ocupada!");
             }

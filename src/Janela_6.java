@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class Janela_6 extends JFrame {
 
-    public Janela_6(Valetinho valetinhoMain) {
+    public Janela_6(Estacionamento valetinhoMain) {
         super("Listar vagas do Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -48,7 +48,7 @@ public class Janela_6 extends JFrame {
         	@Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                	String[] dadosListagem = valetinhoMain.listagemGeral();
+                	String[] dadosListagem = valetinhoMain.listarGeral();
                 	String texto ="";
                     for(String s: dadosListagem ){
                         texto+= s  + "\n";

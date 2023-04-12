@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Janela_7 extends JFrame {
 
-    public Janela_7(Valetinho valetinhoMain) {
+    public Janela_7(Estacionamento valetinhoMain) {
         super("Listar vagas Disponíveis do Estacionamento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -50,7 +50,7 @@ public class Janela_7 extends JFrame {
         	@Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                	ArrayList<Integer> dadosListagem = valetinhoMain.listagemLivres();
+                	ArrayList<Integer> dadosListagem = valetinhoMain.listarLivres();
                 	String texto ="";
                     for(Integer s: dadosListagem ){
                         texto+= "Vaga: "+ s + "\n";
