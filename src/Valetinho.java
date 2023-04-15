@@ -6,8 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Valetinho{
-    private JFrame frame;
+    JFrame frame;
     private static Estacionamento estacionamentoMain;
+    private JLabel label_1;
 
     public static void main(String[] args){
         EventQueue.invokeLater(new Runnable() {
@@ -30,19 +31,28 @@ public class Valetinho{
     
     private void initialize(){
         this.frame = new JFrame();
+        frame.setBackground(SystemColor.textText);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Samuel\\Downloads\\download.png"));
+        frame.setForeground(SystemColor.menuText);
         this.frame.setTitle("Valetinho beta.01");
-        this.frame.setBounds(200, 200, 601, 400);
+        this.frame.setBounds(200, 200, 601, 550);
         this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(3);
         this.frame.getContentPane().setLayout((LayoutManager) null);
         frame.getContentPane().setLayout(null);
+        frame.getContentPane().setBackground(SystemColor.controlDkShadow);
+        frame.getContentPane().setLayout(null);
+        frame.getContentPane().setLayout(null);
       
         
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(Color.LIGHT_GRAY);
+        menuBar.setForeground(Color.RED);
         menuBar.setBounds(0, 0, 105, 22);
         frame.getContentPane().add(menuBar);
         
         JMenu menu = new JMenu("Menu - Valetinho");
+        menu.setForeground(SystemColor.menuText);
         menuBar.add(menu);
         
         
@@ -97,10 +107,12 @@ public class Valetinho{
         menu.add(menuItem_6);
         
         JMenuBar menuBar_1 = new JMenuBar();
+        menuBar_1.setBackground(Color.LIGHT_GRAY);
         menuBar_1.setBounds(105, 0, 41, 22);
         frame.getContentPane().add(menuBar_1);
         
         JMenu menu_1 = new JMenu("Sair                                           ");
+        menu_1.setForeground(SystemColor.controlText);
         menu_1.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
@@ -112,14 +124,19 @@ public class Valetinho{
         JLabel label = new JLabel("Bem Vindo ao Valetinho\r\n");
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Tahoma", Font.BOLD, 44));
-        label.setBounds(10, 106, 565, 83);
+        label.setBounds(10, 49, 565, 83);
         frame.getContentPane().add(label);
         
         JLabel label_2 = new JLabel("Controle a aplicação pelo Menu!");
-        label_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        label_2.setFont(new Font("Tahoma", Font.BOLD, 16));
         label_2.setHorizontalAlignment(SwingConstants.CENTER);
-        label_2.setBounds(10, 188, 565, 93);
+        label_2.setBounds(10, 407, 565, 93);
         frame.getContentPane().add(label_2);
+        
+        label_1 = new JLabel("");
+        label_1.setIcon(new ImageIcon(Valetinho.class.getResource("/Imagens/aaaaaaaaaaa.png")));
+        label_1.setBounds(30, 128, 555, 290);
+        frame.getContentPane().add(label_1);
         
     }
 } 

@@ -15,11 +15,12 @@ public class Janela_4 extends JFrame {
         
 
         JPanel content = new JPanel();
-        content.setBackground(Color.WHITE);
+        content.setBackground(SystemColor.controlDkShadow);
         setContentPane(content);
         content.setLayout(null);
 
         JLabel label = new JLabel("Digite uma placa para Consultar!");
+        label.setBackground(SystemColor.controlDkShadow);
         label.setBounds(10, 11, 564, 105);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, 19));
@@ -27,6 +28,7 @@ public class Janela_4 extends JFrame {
         content.add(label);
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(SystemColor.controlDkShadow);
         buttonPanel.setBounds(0, 127, 584, 234);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 30, 30));
         content.add(buttonPanel);
@@ -60,7 +62,7 @@ public class Janela_4 extends JFrame {
             }
         });
         
-        button_1.setBounds(10, 83, 564, 66);
+        button_1.setBounds(10, 104, 564, 66);
         button_1.setPreferredSize(new Dimension(180, 40));
         button_1.setFocusPainted(false);
         button_1.setBackground(Color.GREEN.darker());

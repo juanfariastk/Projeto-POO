@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.CompoundBorder;
 
 public class Janela_2 extends JFrame {
 
@@ -15,7 +17,7 @@ public class Janela_2 extends JFrame {
         
         
         JPanel content = new JPanel();
-        content.setBackground(Color.WHITE);
+        content.setBackground(SystemColor.controlDkShadow);
         setContentPane(content);
         content.setLayout(null);
 
@@ -27,6 +29,7 @@ public class Janela_2 extends JFrame {
         content.add(label);
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(SystemColor.controlDkShadow);
         buttonPanel.setBounds(0, 127, 584, 234);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 30, 30));
         content.add(buttonPanel);
@@ -61,10 +64,9 @@ public class Janela_2 extends JFrame {
         
         button_1.setBounds(10, 100, 564, 66);
         button_1.setPreferredSize(new Dimension(180, 40));
-        button_1.setFocusPainted(false);
         button_1.setBackground(Color.GREEN.darker());
-        button_1.setForeground(Color.WHITE);
-        button_1.setBorder(BorderFactory.createEmptyBorder());
+        button_1.setForeground(new Color(0, 255, 0));
+        button_1.setBorder(new CompoundBorder());
         button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         buttonPanel.add(button_1);
         

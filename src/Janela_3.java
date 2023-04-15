@@ -15,7 +15,7 @@ public class Janela_3 extends JFrame {
         
 
         JPanel content = new JPanel();
-        content.setBackground(Color.WHITE);
+        content.setBackground(SystemColor.controlDkShadow);
         setContentPane(content);
         content.setLayout(null);
 
@@ -27,6 +27,7 @@ public class Janela_3 extends JFrame {
         content.add(label);
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(SystemColor.controlDkShadow);
         buttonPanel.setBounds(0, 127, 584, 234);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 30, 30));
         content.add(buttonPanel);
