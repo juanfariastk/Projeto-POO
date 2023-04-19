@@ -7,6 +7,7 @@ import java.time.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Estacionamento {
     private String[] placas;
@@ -105,23 +106,30 @@ public class Estacionamento {
     }
 
     public void gravarDados() throws IOException {
-        FileWriter arquivoPlacas = new FileWriter("./placas.csv");
-        BufferedWriter escreverPlacas = new BufferedWriter(arquivoPlacas);
-        for (int i = 0; i < placas.length; i++) {
-            if (placas[i] != null) {
-                escreverPlacas.write("vaga :" + (i+1) + " | Placa: "+ placas[i] + "\n");
-            }
-        }
-        escreverPlacas.close();
+    	FileWriter fileWriter = new FileWriter(new File("./placas.csv"));
+		for (int i = 0; i < placas.length; i++) {
+			if (!(placas[i] == null)) {	
+				if(i == placas.length - 1) {			
+					fileWriter.write((placas.length) + ";" + placas[placas.length - 1]);
+				} else {
+					fileWriter.write((i + 1) + ";" + placas[i] + "\n");
+				}
+			} 
+
+		}
+		fileWriter.flush();
+		fileWriter.close();
     }
     public void lerDados() throws IOException{
-        FileReader arquivoPlacas = new FileReader("./placas.csv");
-        BufferedReader lerPlacas = new BufferedReader(arquivoPlacas);
-        String linhas;
-        while((linhas = lerPlacas.readLine()) != null){
-            System.out.println(linhas);
-        }
-        lerPlacas.close();
+    	File salvosDados = new File("./placas.csv");
+		if(salvosDados.exists()) {
+			Scanner arquivo = new Scanner(new File("./placas.csv"));
+			while (arquivo.hasNextLine()) {
+				String[] salvoDados = arquivo.nextLine().split(";");
+				placas[Integer.parseInt(salvoDados[0]) - 1] = salvoDados[1];
+			}
+			arquivo.close();
+		}
     }
 
     public String toString() {
