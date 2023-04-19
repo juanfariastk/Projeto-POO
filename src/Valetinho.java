@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class Valetinho{
     JFrame frame;
@@ -29,11 +30,12 @@ public class Valetinho{
 
     public Valetinho() throws Exception{
         this.initialize();
-        estacionamentoMain = new Estacionamento(10);
     }
     
-    private void initialize(){
+    private void initialize() throws Exception{
         this.frame = new JFrame();
+        estacionamentoMain = new Estacionamento(10);
+        estacionamentoMain.lerDados();
         frame.setBackground(SystemColor.textText);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Samuel\\Downloads\\download.png"));
         frame.setForeground(SystemColor.menuText);
@@ -119,6 +121,11 @@ public class Valetinho{
         menu_1.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
+        		try {
+					estacionamentoMain.gravarDados();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
         		frame.dispose();
         	}
         });
