@@ -120,17 +120,21 @@ public class Estacionamento {
 		fileWriter.flush();
 		fileWriter.close();
     }
-    public void lerDados() throws IOException{
-    	File salvosDados = new File("./placas.csv");
-		if(salvosDados.exists()) {
-			Scanner arquivo = new Scanner(new File("./placas.csv"));
-			while (arquivo.hasNextLine()) {
-				String[] salvoDados = arquivo.nextLine().split(";");
-				placas[Integer.parseInt(salvoDados[0]) - 1] = salvoDados[1];
-			}
-			arquivo.close();
-		}
+   public void lerDados() throws Exception{
+        File salvos = new File("./placas.csv");
+        if(salvos.exists()) {
+            Scanner arquivo = new Scanner(new File("./placas.csv"));
+            while (arquivo.hasNextLine()) {
+                String[] salvo = arquivo.nextLine().split(";");
+                try {
+                    placas[Integer.parseInt(salvo[0]) - 1] = salvo[1];
+                } catch (NumberFormatException e) {           
+                }
+            }
+            arquivo.close();
+        }
     }
+
 
     public String toString() {
         return "Estacionamento vagas=" + placas.length + ", placas=" + Arrays.toString(placas) + " ";
