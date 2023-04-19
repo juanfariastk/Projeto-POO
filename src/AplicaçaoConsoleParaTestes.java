@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class AplicaçaoConsoleParaTestes {
-    public static void mainTest(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         Estacionamento estacionamento = null;
 
         try {
@@ -54,6 +54,7 @@ public class AplicaçaoConsoleParaTestes {
         System.out.println("\n------------------------");
         System.out.println("listagem geral");
         System.out.println("------------------------");
+        estacionamento.gravarDados();
         for(String s : estacionamento.listarGeral()) {
             System.out.println(s);
         }

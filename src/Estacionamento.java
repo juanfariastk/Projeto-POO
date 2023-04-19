@@ -2,6 +2,7 @@
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.*;
 
 import java.util.ArrayList;
@@ -28,8 +29,8 @@ public class Estacionamento {
                 BufferedWriter escreverHistorico = new BufferedWriter(arquivoHistorico);
 
                 placas[vagaEscolhida - 1] = placaNova;
-                escreverHistorico.write("Carro: " + placaNova + " | " + "Vaga: " + vagaEscolhida + " | " + "Entrou em: "
-                        + LocalDateTime.now() + "\n");
+                DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                escreverHistorico.write( LocalDateTime.now().format(formatarData) + " ; " + vagaEscolhida + " ; " + placaNova + " ; "+" Entrada " + "\n" );
                 escreverHistorico.close();
             } else {
                 throw new EstacionamentoException("Esta vaga já está ocupada!");
@@ -48,8 +49,8 @@ public class Estacionamento {
         } else {
             FileWriter arquivoHistorico = new FileWriter("historico.csv", true);
             BufferedWriter escreverHistorico = new BufferedWriter(arquivoHistorico);
-            escreverHistorico.write("Carro: " + placas[vagaEscolhida - 1] + " | " + "Vaga: " + vagaEscolhida + " | "
-                    + "Saiu em: " + LocalDateTime.now() + "\n");
+            DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            escreverHistorico.write(LocalDateTime.now().format(formatarData) +  " ; " + placas[vagaEscolhida - 1] + " ; " + vagaEscolhida + " ; " + " Saida " + "\n");
             escreverHistorico.close();
             placas[vagaEscolhida - 1] = null;
         }

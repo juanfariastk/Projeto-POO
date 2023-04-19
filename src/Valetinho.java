@@ -8,15 +8,17 @@ import java.awt.event.MouseEvent;
 public class Valetinho{
     JFrame frame;
     private static Estacionamento estacionamentoMain;
+    
     private JLabel label_1;
 
     public static void main(String[] args){
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+            	
                 try{
                     Valetinho window = new Valetinho();
-                    estacionamentoMain = new Estacionamento(10);
+
                     window.frame.setVisible(true);
                 }catch(Exception ex2){
                     ex2.printStackTrace();
@@ -25,8 +27,9 @@ public class Valetinho{
         });
     }
 
-    public Valetinho(){
+    public Valetinho() throws Exception{
         this.initialize();
+        estacionamentoMain = new Estacionamento(10);
     }
     
     private void initialize(){
@@ -34,7 +37,7 @@ public class Valetinho{
         frame.setBackground(SystemColor.textText);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Samuel\\Downloads\\download.png"));
         frame.setForeground(SystemColor.menuText);
-        this.frame.setTitle("Valetinho beta.01");
+        this.frame.setTitle("Valetinho 1.0");
         this.frame.setBounds(200, 200, 601, 550);
         this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(3);
@@ -56,7 +59,7 @@ public class Valetinho{
         menuBar.add(menu);
         
         
-        JMenuItem menuItem_1 = new JMenuItem("Adicionar Placa");
+        JMenuItem menuItem_1 = new JMenuItem("Adicionar");
         menuItem_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new Janela_2(estacionamentoMain);
@@ -64,7 +67,7 @@ public class Valetinho{
         });
         menu.add(menuItem_1);
         
-        JMenuItem menuItem_2 = new JMenuItem("Remover Placa");
+        JMenuItem menuItem_2 = new JMenuItem("Remover");
         menuItem_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new Janela_3(estacionamentoMain);
@@ -80,7 +83,7 @@ public class Valetinho{
         });
         menu.add(menuItem_3);
         
-        JMenuItem menuItem_4 = new JMenuItem("Transferir placa");
+        JMenuItem menuItem_4 = new JMenuItem("Transferência de placa");
         menuItem_4.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new Janela_5(estacionamentoMain);
@@ -89,7 +92,7 @@ public class Valetinho{
         });
         menu.add(menuItem_4);
         
-        JMenuItem menuItem_5 = new JMenuItem("Listar Todas as vagas");
+        JMenuItem menuItem_5 = new JMenuItem("Listagem Geral");
         menuItem_5.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new Janela_6(estacionamentoMain);
@@ -97,7 +100,7 @@ public class Valetinho{
         });
         menu.add(menuItem_5);
         
-        JMenuItem menuItem_6 = new JMenuItem("Listar vagas livres");
+        JMenuItem menuItem_6 = new JMenuItem("Listagem de vagas livres");
         menuItem_6.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new Janela_7(estacionamentoMain);
